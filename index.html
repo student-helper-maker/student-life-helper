@@ -11,7 +11,7 @@
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
@@ -105,7 +105,7 @@ input,select{
 }
 
 /* =========================
-   BEAUTIFUL RESULT
+   RESULT
 ========================= */
 
 .result-box{
@@ -115,18 +115,6 @@ input,select{
     background:linear-gradient(145deg,#111827,#312e81);
     border:2px solid rgba(255,255,255,.15);
     box-shadow:0 15px 45px rgba(0,0,0,.35);
-    animation:resultAppear .5s ease;
-}
-
-@keyframes resultAppear{
-    from{
-        opacity:0;
-        transform:translateY(25px) scale(.97);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
 }
 
 .result-title{
@@ -141,8 +129,6 @@ input,select{
     margin-bottom:20px;
 }
 
-/* Percentage Circle */
-
 .percentage-circle{
     width:170px;
     height:170px;
@@ -155,7 +141,6 @@ input,select{
     background:
         radial-gradient(circle,#111827 57%,transparent 58%),
         conic-gradient(#22c55e var(--percent),#334155 0);
-    box-shadow:0 0 30px rgba(34,197,94,.3);
 }
 
 .percentage-number{
@@ -167,8 +152,6 @@ input,select{
     color:#cbd5e1;
     font-size:13px;
 }
-
-/* Result Cards */
 
 .stats{
     display:grid;
@@ -194,23 +177,10 @@ input,select{
     font-size:22px;
 }
 
-.grade{
-    color:#facc15;
-}
-
-.total{
-    color:#38bdf8;
-}
-
-.status-pass{
-    color:#4ade80;
-}
-
-.status-fail{
-    color:#f87171;
-}
-
-/* Subjects */
+.grade{color:#facc15;}
+.total{color:#38bdf8;}
+.status-pass{color:#4ade80;}
+.status-fail{color:#f87171;}
 
 .subject-result{
     margin-top:20px;
@@ -238,10 +208,6 @@ input,select{
     border-left:5px solid #ef4444;
 }
 
-.subject-percent{
-    font-weight:bold;
-}
-
 .result-buttons{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -258,15 +224,13 @@ input,select{
     cursor:pointer;
 }
 
-.detail-btn{
-    background:#6366f1;
-}
+.detail-btn{background:#6366f1;}
+.print-btn{background:#0891b2;}
 
-.print-btn{
-    background:#0891b2;
-}
 
-/* Planner */
+/* =========================
+   PLANNER
+========================= */
 
 .planner-tabs{
     display:grid;
@@ -281,10 +245,91 @@ input,select{
     border-radius:10px;
     background:#334155;
     color:white;
+    cursor:pointer;
 }
 
 .planner-tabs button.active{
     background:#7c3aed;
+}
+
+
+/* =========================
+   TIME TOOLS
+========================= */
+
+.time-tools{
+    margin-top:25px;
+}
+
+.time-tools h2{
+    margin-bottom:15px;
+}
+
+.tools-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.time-card{
+    padding:20px;
+    border-radius:18px;
+    background:linear-gradient(145deg,#172554,#1e1b4b);
+    border:1px solid rgba(255,255,255,.15);
+    text-align:center;
+}
+
+.time-card h3{
+    margin-bottom:15px;
+}
+
+.clock-display{
+    font-size:30px;
+    font-weight:bold;
+    color:#67e8f9;
+    margin:15px 0;
+    letter-spacing:2px;
+}
+
+.stopwatch-display{
+    font-size:30px;
+    font-weight:bold;
+    color:#86efac;
+    margin:15px 0;
+    letter-spacing:2px;
+}
+
+.timer-display{
+    font-size:30px;
+    font-weight:bold;
+    color:#facc15;
+    margin:15px 0;
+    letter-spacing:2px;
+}
+
+.tool-buttons{
+    display:flex;
+    gap:7px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.tool-buttons button{
+    border:0;
+    padding:9px 12px;
+    border-radius:9px;
+    color:white;
+    background:#4f46e5;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.tool-buttons .red{
+    background:#dc2626;
+}
+
+.tool-buttons .green{
+    background:#16a34a;
 }
 
 .task{
@@ -302,12 +347,18 @@ input,select{
     text-decoration:line-through;
 }
 
+.task-actions{
+    display:flex;
+    gap:5px;
+}
+
 .task-actions button{
     border:0;
     padding:8px;
     border-radius:7px;
     color:white;
     background:#2563eb;
+    cursor:pointer;
 }
 
 .task-actions .delete{
@@ -321,9 +372,10 @@ footer{
     font-size:13px;
 }
 
-/* Mobile */
 
-@media(max-width:600px){
+/* MOBILE */
+
+@media(max-width:700px){
 
     nav{
         display:grid;
@@ -352,8 +404,18 @@ footer{
         grid-template-columns:1fr 1fr;
     }
 
+    .tools-grid{
+        grid-template-columns:1fr;
+    }
+
     .task{
         flex-direction:column;
+    }
+
+    .clock-display,
+    .stopwatch-display,
+    .timer-display{
+        font-size:27px;
     }
 }
 </style>
@@ -363,12 +425,14 @@ footer{
 
 <header>
     <h1>📚 Student Life Helper</h1>
+
     <div class="editor">
         Editor: <strong>Pratyush Sharma</strong>
     </div>
 </header>
 
 <nav>
+
     <button onclick="showSection('calculator')">
         🧮 Percentage
     </button>
@@ -376,9 +440,16 @@ footer{
     <button onclick="showSection('planner')">
         📅 Planner
     </button>
+
 </nav>
 
+
 <div class="container">
+
+
+<!-- =========================
+     CALCULATOR
+========================= -->
 
 <section id="calculator" class="section active">
 
@@ -387,19 +458,30 @@ footer{
 <h2>🧮 Percentage Calculator</h2>
 
 <label>Student Name</label>
-<input id="studentName" placeholder="Enter student name">
+
+<input
+    id="studentName"
+    placeholder="Enter student name">
+
 
 <label>Number of Subjects</label>
-<input id="subjectCount" type="number" min="1" max="20" value="5">
+
+<input
+    id="subjectCount"
+    type="number"
+    min="1"
+    max="20"
+    value="5">
+
 
 <button class="primary" onclick="createSubjects()">
-Create Subjects
+    Create Subjects
 </button>
 
 <div id="subjects"></div>
 
 <button class="primary" onclick="calculateResult()">
-Calculate Result 🚀
+    Calculate Result 🚀
 </button>
 
 <div id="result"></div>
@@ -409,6 +491,11 @@ Calculate Result 🚀
 </section>
 
 
+
+<!-- =========================
+     PLANNER
+========================= -->
+
 <section id="planner" class="section">
 
 <div class="card">
@@ -416,31 +503,171 @@ Calculate Result 🚀
 <h2>📅 Student Planner</h2>
 
 <div class="planner-tabs">
-<button class="active" onclick="setPlanner('Day',this)">Day</button>
-<button onclick="setPlanner('Week',this)">Week</button>
-<button onclick="setPlanner('Month',this)">Month</button>
-<button onclick="setPlanner('Year',this)">Year</button>
+
+<button class="active"
+onclick="setPlanner('Day',this)">
+Day
+</button>
+
+<button onclick="setPlanner('Week',this)">
+Week
+</button>
+
+<button onclick="setPlanner('Month',this)">
+Month
+</button>
+
+<button onclick="setPlanner('Year',this)">
+Year
+</button>
+
 </div>
 
-<h3 id="plannerTitle">Day Planner</h3>
+<h3 id="plannerTitle">
+Day Planner
+</h3>
 
-<input id="taskName" placeholder="Enter task">
+
+<input
+    id="taskName"
+    placeholder="Enter task">
+
 
 <select id="taskCategory">
+
 <option>Study</option>
 <option>Homework</option>
 <option>Exam</option>
 <option>Project</option>
 <option>Personal</option>
+
 </select>
 
-<input id="taskDate" type="datetime-local">
+
+<input
+    id="taskDate"
+    type="datetime-local">
+
 
 <button class="primary" onclick="addTask()">
-➕ Add Task
+    ➕ Add Task
 </button>
 
 <div id="tasks"></div>
+
+
+
+<!-- =========================
+     TIME TOOLS
+========================= -->
+
+<div class="time-tools">
+
+<h2>⏰ Time Tools</h2>
+
+<div class="tools-grid">
+
+
+<!-- CLOCK -->
+
+<div class="time-card">
+
+<h3>🕐 Live Clock</h3>
+
+<div
+    id="clock"
+    class="clock-display">
+    00:00:00
+</div>
+
+<div id="dateDisplay">
+    Loading...
+</div>
+
+</div>
+
+
+
+<!-- STOPWATCH -->
+
+<div class="time-card">
+
+<h3>⏱️ Stopwatch</h3>
+
+<div
+    id="stopwatch"
+    class="stopwatch-display">
+    00:00:00.00
+</div>
+
+<div class="tool-buttons">
+
+<button
+    class="green"
+    onclick="startStopwatch()">
+    ▶ Start
+</button>
+
+<button onclick="pauseStopwatch()">
+    ⏸ Pause
+</button>
+
+<button
+    class="red"
+    onclick="resetStopwatch()">
+    ↻ Reset
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- TIMER -->
+
+<div class="time-card">
+
+<h3>⏳ Timer</h3>
+
+<div
+    id="timer"
+    class="timer-display">
+    05:00
+</div>
+
+<input
+    id="timerMinutes"
+    type="number"
+    min="1"
+    max="180"
+    placeholder="Minutes">
+
+<div class="tool-buttons">
+
+<button
+    class="green"
+    onclick="startTimer()">
+    ▶ Start
+</button>
+
+<button onclick="pauseTimer()">
+    ⏸ Pause
+</button>
+
+<button
+    class="red"
+    onclick="resetTimer()">
+    ↻ Reset
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -448,19 +675,30 @@ Calculate Result 🚀
 
 </div>
 
+
 <footer>
 Student Life Helper • Editor: Pratyush Sharma
 </footer>
 
 
+
 <script>
+
+/* =========================
+   NAVIGATION
+========================= */
 
 function showSection(id){
 
-    document.querySelectorAll(".section")
-    .forEach(x=>x.classList.remove("active"));
+    document
+    .querySelectorAll(".section")
+    .forEach(x=>{
+        x.classList.remove("active");
+    });
 
-    document.getElementById(id).classList.add("active");
+    document
+    .getElementById(id)
+    .classList.add("active");
 
     window.scrollTo({
         top:0,
@@ -469,20 +707,26 @@ function showSection(id){
 }
 
 
-/* SUBJECT CREATOR */
+/* =========================
+   SUBJECTS
+========================= */
 
 function createSubjects(){
 
-    const count =
-        Number(document.getElementById("subjectCount").value);
+    const count=
+        Number(
+            document.getElementById("subjectCount").value
+        );
 
-    const box =
+    const box=
         document.getElementById("subjects");
 
     box.innerHTML="";
 
     if(count<1 || count>20){
+
         alert("Enter 1 to 20 subjects.");
+
         return;
     }
 
@@ -517,53 +761,64 @@ function createSubjects(){
 }
 
 
-/* CALCULATE */
+/* =========================
+   RESULT
+========================= */
 
 let latestResult=null;
 
 function calculateResult(){
 
-    const name =
-        document.getElementById("studentName")
+    const name=
+        document
+        .getElementById("studentName")
         .value.trim() || "Student";
 
-    const names =
+    const names=
         document.querySelectorAll(".subjectName");
 
-    const obtained =
+    const obtained=
         document.querySelectorAll(".obtained");
 
-    const maximum =
+    const maximum=
         document.querySelectorAll(".maximum");
 
     if(names.length===0){
+
         alert("First create subjects.");
+
         return;
     }
 
     let totalObtained=0;
     let totalMaximum=0;
     let passed=true;
+
     let subjects=[];
 
     for(let i=0;i<names.length;i++){
 
-        const subject =
-            names[i].value.trim() || `Subject ${i+1}`;
+        const subject=
+            names[i].value.trim()
+            || `Subject ${i+1}`;
 
-        const marks =
+        const marks=
             Number(obtained[i].value);
 
-        const max =
+        const max=
             Number(maximum[i].value);
 
         if(!max || marks<0 || marks>max){
 
-            alert("Please check "+subject+" marks.");
+            alert(
+                "Please check "+subject+" marks."
+            );
+
             return;
         }
 
-        const percent=(marks/max)*100;
+        const percent=
+            marks/max*100;
 
         if(percent<33){
             passed=false;
@@ -580,7 +835,7 @@ function calculateResult(){
         });
     }
 
-    const percentage =
+    const percentage=
         totalObtained/totalMaximum*100;
 
     let grade="F";
@@ -592,6 +847,7 @@ function calculateResult(){
     else if(percentage>=50) grade="C";
     else if(percentage>=33) grade="D";
 
+
     latestResult={
         name,
         subjects,
@@ -602,7 +858,6 @@ function calculateResult(){
         passed
     };
 
-    /* SUBJECT RESULT */
 
     let subjectHTML="";
 
@@ -615,25 +870,29 @@ function calculateResult(){
         <div class="subject-card ${pass?'pass':'fail'}">
 
             <div>
-                <strong>${escapeHTML(s.name)}</strong>
+
+                <strong>
+                    ${escapeHTML(s.name)}
+                </strong>
+
                 <br>
+
                 <small>
-                    ${s.marks} / ${s.max} marks
+                    ${s.marks}/${s.max} marks
                 </small>
+
             </div>
 
-            <div class="subject-percent">
+            <strong>
                 ${s.percentage.toFixed(1)}%
-                ${pass ? "✅" : "❌"}
-            </div>
+                ${pass?"✅":"❌"}
+            </strong>
 
         </div>
 
         `;
     });
 
-
-    /* BEAUTIFUL RESULT */
 
     document.getElementById("result").innerHTML=`
 
@@ -644,14 +903,18 @@ function calculateResult(){
         </div>
 
         <div class="student-name">
-            Student: <strong>
-            ${escapeHTML(name)}
+
+            Student:
+            <strong>
+                ${escapeHTML(name)}
             </strong>
+
         </div>
 
 
-        <div class="percentage-circle"
-             style="--percent:${percentage}%">
+        <div
+            class="percentage-circle"
+            style="--percent:${percentage}%">
 
             <div class="percentage-number">
                 ${percentage.toFixed(1)}%
@@ -667,26 +930,42 @@ function calculateResult(){
         <div class="stats">
 
             <div class="stat-card">
+
                 <small>📊 Total</small>
+
                 <strong class="total">
                     ${totalObtained}/${totalMaximum}
                 </strong>
+
             </div>
 
+
             <div class="stat-card">
+
                 <small>🎓 Grade</small>
+
                 <strong class="grade">
                     ${grade}
                 </strong>
+
             </div>
 
+
             <div class="stat-card">
+
                 <small>📌 Status</small>
 
-                <strong class="${passed ?
-                'status-pass':'status-fail'}">
+                <strong class="${
+                    passed
+                    ?"status-pass"
+                    :"status-fail"
+                }">
 
-                    ${passed ? "PASS 🎉":"FAIL"}
+                    ${
+                        passed
+                        ?"PASS 🎉"
+                        :"FAIL"
+                    }
 
                 </strong>
 
@@ -697,7 +976,9 @@ function calculateResult(){
 
         <div class="subject-result">
 
-            <h3>📚 Subject Performance</h3>
+            <h3>
+                📚 Subject Performance
+            </h3>
 
             ${subjectHTML}
 
@@ -732,13 +1013,12 @@ function calculateResult(){
 }
 
 
-/* SAVE */
-
 function saveResult(){
 
-    let data =
+    let data=
         JSON.parse(
-            localStorage.getItem("studentResults") || "[]"
+            localStorage.getItem("studentResults")
+            || "[]"
         );
 
     data.push({
@@ -753,7 +1033,9 @@ function saveResult(){
 }
 
 
-/* DETAILED RESULT */
+/* =========================
+   DETAILED RESULT
+========================= */
 
 function openDetailedResult(){
 
@@ -766,10 +1048,19 @@ function openDetailedResult(){
         rows+=`
 
         <tr>
-            <td>${escapeHTML(s.name)}</td>
+
+            <td>
+                ${escapeHTML(s.name)}
+            </td>
+
             <td>${s.marks}</td>
+
             <td>${s.max}</td>
-            <td>${s.percentage.toFixed(2)}%</td>
+
+            <td>
+                ${s.percentage.toFixed(2)}%
+            </td>
+
         </tr>
 
         `;
@@ -787,8 +1078,9 @@ function openDetailedResult(){
 
     <title>Student Result</title>
 
-    <meta name="viewport"
-          content="width=device-width,initial-scale=1">
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1">
 
     <style>
 
@@ -838,7 +1130,6 @@ function openDetailedResult(){
         border-radius:10px;
         background:#4f46e5;
         color:white;
-        cursor:pointer;
     }
 
     </style>
@@ -852,43 +1143,50 @@ function openDetailedResult(){
     <h1>🏆 Student Result</h1>
 
     <h3>
-    Student:
-    ${escapeHTML(latestResult.name)}
+        Student:
+        ${escapeHTML(latestResult.name)}
     </h3>
 
     <div class="percentage">
-    ${latestResult.percentage.toFixed(2)}%
+
+        ${latestResult.percentage.toFixed(2)}%
+
     </div>
 
     <table>
 
     <tr>
+
         <th>Subject</th>
         <th>Marks</th>
         <th>Maximum</th>
         <th>Percentage</th>
+
     </tr>
 
     ${rows}
 
     </table>
 
-    <h3 style="margin-top:20px">
-    Grade: ${latestResult.grade}
+    <h3>
+        Grade: ${latestResult.grade}
     </h3>
 
     <h3>
-    Status:
-    ${latestResult.passed ? "✅ PASS":"❌ FAIL"}
+        Status:
+        ${latestResult.passed
+        ?"✅ PASS"
+        :"❌ FAIL"}
     </h3>
 
     <button onclick="window.print()">
-    🖨️ Save / Print PDF
+        🖨️ Save / Print PDF
     </button>
 
     </div>
 
     </body>
+
     </html>
 
     `);
@@ -897,7 +1195,9 @@ function openDetailedResult(){
 }
 
 
-/* PLANNER */
+/* =========================
+   PLANNER
+========================= */
 
 let plannerMode="Day";
 
@@ -905,46 +1205,61 @@ function setPlanner(mode,button){
 
     plannerMode=mode;
 
-    document.querySelectorAll(".planner-tabs button")
-    .forEach(x=>x.classList.remove("active"));
+    document
+    .querySelectorAll(".planner-tabs button")
+    .forEach(x=>{
+        x.classList.remove("active");
+    });
 
     button.classList.add("active");
 
-    document.getElementById("plannerTitle")
+    document
+    .getElementById("plannerTitle")
     .textContent=mode+" Planner";
 
     displayTasks();
 }
 
+
 function addTask(){
 
     const name=
-        document.getElementById("taskName")
+        document
+        .getElementById("taskName")
         .value.trim();
 
     const category=
-        document.getElementById("taskCategory").value;
+        document
+        .getElementById("taskCategory")
+        .value;
 
     const date=
-        document.getElementById("taskDate").value;
+        document
+        .getElementById("taskDate")
+        .value;
 
     if(!name){
+
         alert("Enter a task.");
+
         return;
     }
 
     let tasks=
         JSON.parse(
-            localStorage.getItem("studentTasks") || "[]"
+            localStorage.getItem("studentTasks")
+            || "[]"
         );
 
     tasks.push({
+
         id:Date.now(),
         name,
         category,
         date,
         mode:plannerMode,
         done:false
+
     });
 
     localStorage.setItem(
@@ -958,16 +1273,22 @@ function addTask(){
     displayTasks();
 }
 
+
 function displayTasks(){
 
     let tasks=
         JSON.parse(
-            localStorage.getItem("studentTasks") || "[]"
+            localStorage.getItem("studentTasks")
+            || "[]"
         );
 
-    tasks=tasks.filter(t=>t.mode===plannerMode);
+    tasks=
+        tasks.filter(
+            t=>t.mode===plannerMode
+        );
 
-    const box=document.getElementById("tasks");
+    const box=
+        document.getElementById("tasks");
 
     box.innerHTML="";
 
@@ -975,30 +1296,36 @@ function displayTasks(){
 
         box.innerHTML+=`
 
-        <div class="task ${task.done?'done':''}">
+        <div class="task ${task.done?"done":""}">
 
             <div>
+
                 <strong>
-                ${escapeHTML(task.name)}
+                    ${escapeHTML(task.name)}
                 </strong>
 
                 <br>
 
                 <small>
-                ${escapeHTML(task.category)}
+                    ${escapeHTML(task.category)}
+                    ${task.date
+                    ?" • "+formatDate(task.date)
+                    :""}
                 </small>
+
             </div>
 
             <div class="task-actions">
 
-                <button onclick="toggleTask(${task.id})">
-                ✓
+                <button
+                    onclick="toggleTask(${task.id})">
+                    ✓
                 </button>
 
                 <button
-                class="delete"
-                onclick="deleteTask(${task.id})">
-                🗑
+                    class="delete"
+                    onclick="deleteTask(${task.id})">
+                    🗑
                 </button>
 
             </div>
@@ -1009,16 +1336,21 @@ function displayTasks(){
     });
 }
 
+
 function toggleTask(id){
 
     let tasks=
         JSON.parse(
-            localStorage.getItem("studentTasks") || "[]"
+            localStorage.getItem("studentTasks")
+            || "[]"
         );
 
-    tasks=tasks.map(t=>
-        t.id===id ? {...t,done:!t.done}:t
-    );
+    tasks=
+        tasks.map(t=>
+            t.id===id
+            ?{...t,done:!t.done}
+            :t
+        );
 
     localStorage.setItem(
         "studentTasks",
@@ -1027,15 +1359,18 @@ function toggleTask(id){
 
     displayTasks();
 }
+
 
 function deleteTask(id){
 
     let tasks=
         JSON.parse(
-            localStorage.getItem("studentTasks") || "[]"
+            localStorage.getItem("studentTasks")
+            || "[]"
         );
 
-    tasks=tasks.filter(t=>t.id!==id);
+    tasks=
+        tasks.filter(t=>t.id!==id);
 
     localStorage.setItem(
         "studentTasks",
@@ -1044,6 +1379,224 @@ function deleteTask(id){
 
     displayTasks();
 }
+
+
+function formatDate(value){
+
+    return new Date(value).toLocaleString();
+}
+
+
+/* =========================
+   LIVE CLOCK
+========================= */
+
+function updateClock(){
+
+    const now=new Date();
+
+    const time=
+        now.toLocaleTimeString();
+
+    const date=
+        now.toLocaleDateString(
+            undefined,
+            {
+                weekday:"long",
+                year:"numeric",
+                month:"long",
+                day:"numeric"
+            }
+        );
+
+    document.getElementById("clock")
+    .textContent=time;
+
+    document.getElementById("dateDisplay")
+    .textContent=date;
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+
+
+/* =========================
+   STOPWATCH
+========================= */
+
+let stopwatchTime=0;
+let stopwatchInterval=null;
+let stopwatchRunning=false;
+
+function formatStopwatch(ms){
+
+    const minutes=
+        Math.floor(ms/60000);
+
+    const seconds=
+        Math.floor((ms%60000)/1000);
+
+    const hundredths=
+        Math.floor((ms%1000)/10);
+
+    return String(minutes).padStart(2,"0")
+        +":"
+        +String(seconds).padStart(2,"0")
+        +"."
+        +String(hundredths).padStart(2,"0");
+}
+
+
+function updateStopwatch(){
+
+    document.getElementById("stopwatch")
+    .textContent=
+        formatStopwatch(stopwatchTime);
+}
+
+
+function startStopwatch(){
+
+    if(stopwatchRunning) return;
+
+    stopwatchRunning=true;
+
+    const start=Date.now()-stopwatchTime;
+
+    stopwatchInterval=
+        setInterval(()=>{
+
+            stopwatchTime=
+                Date.now()-start;
+
+            updateStopwatch();
+
+        },10);
+}
+
+
+function pauseStopwatch(){
+
+    stopwatchRunning=false;
+
+    clearInterval(stopwatchInterval);
+}
+
+
+function resetStopwatch(){
+
+    pauseStopwatch();
+
+    stopwatchTime=0;
+
+    updateStopwatch();
+}
+
+
+
+/* =========================
+   TIMER
+========================= */
+
+let timerSeconds=300;
+let timerInterval=null;
+let timerRunning=false;
+
+function updateTimer(){
+
+    const minutes=
+        Math.floor(timerSeconds/60);
+
+    const seconds=
+        timerSeconds%60;
+
+    document.getElementById("timer")
+    .textContent=
+        String(minutes).padStart(2,"0")
+        +":"
+        +String(seconds).padStart(2,"0");
+}
+
+
+function startTimer(){
+
+    if(timerRunning) return;
+
+    const input=
+        document.getElementById("timerMinutes");
+
+    if(timerSeconds<=0){
+
+        const mins=
+            Number(input.value);
+
+        if(!mins || mins<1){
+
+            alert("Enter timer minutes.");
+
+            return;
+        }
+
+        timerSeconds=mins*60;
+    }
+
+    timerRunning=true;
+
+    timerInterval=
+        setInterval(()=>{
+
+            timerSeconds--;
+
+            updateTimer();
+
+            if(timerSeconds<=0){
+
+                clearInterval(timerInterval);
+
+                timerRunning=false;
+
+                timerSeconds=0;
+
+                updateTimer();
+
+                alert("⏰ Timer Finished!");
+
+            }
+
+        },1000);
+}
+
+
+function pauseTimer(){
+
+    timerRunning=false;
+
+    clearInterval(timerInterval);
+}
+
+
+function resetTimer(){
+
+    pauseTimer();
+
+    const mins=
+        Number(
+            document.getElementById("timerMinutes").value
+        );
+
+    timerSeconds=
+        mins && mins>=1
+        ?mins*60
+        :300;
+
+    updateTimer();
+}
+
+
+/* =========================
+   HELPERS
+========================= */
 
 function escapeHTML(text){
 
@@ -1055,8 +1608,15 @@ function escapeHTML(text){
     .replaceAll("'","&#039;");
 }
 
+
+/* =========================
+   START
+========================= */
+
 createSubjects();
 displayTasks();
+updateStopwatch();
+updateTimer();
 
 </script>
 
